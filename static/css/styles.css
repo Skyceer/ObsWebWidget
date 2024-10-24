@@ -1,0 +1,68 @@
+.media-container-wrapper {
+    width: 70%;
+    padding: 20px;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+}
+
+.media-container {
+    width: calc(100% - 20px);
+    padding-bottom: 56.25%;
+    background-color: #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.media-file {
+    position: absolute;
+    border: 2px solid transparent;
+    cursor: move;
+}
+
+.media-file.active {
+    border: 2px solid blue;
+}
+
+.hidden {
+    display: none;
+}
+
+.resize-handle {
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border: 1px solid #000;
+    position: absolute;
+    z-index: 10;
+}
+
+.resize-handle.nw {
+    top: 0;
+    left: 0;
+    cursor: nw-resize;
+    transform: translate(-50%, -50%);
+}
+
+.resize-handle.ne {
+    top: 0;
+    right: 0;
+    cursor: ne-resize;
+    transform: translate(50%, -50%);
+}
+
+.resize-handle.sw {
+    bottom: 0;
+    left: 0;
+    cursor: sw-resize;
+    transform: translate(-50%, 50%);
+}
+
+.resize-handle.se {
+    bottom: 0;
+    right: 0;
+    cursor: se-resize;
+    transform: translate(50%, 50%);
+}

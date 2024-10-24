@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <style>
+        .media-container-wrapper {
+            width: 70%;
+            padding: 20px;
+            display: inline-block;
+            vertical-align: top;
+            position: relative;
+        }
+
+        .media-container {
+            width: 100%;
+            padding-bottom: 56.25%;
+            background-color: #000;
+            position: relative;
+            border: 1px solid #444;
+        }
+
+        .media-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            pointer-events: none;
+
+        }
+
+        .media-file {
+            position: absolute;
+            cursor: move;
+        }
+
+        .control-panel {
+            width: 30%;
+            height: 100vh;
+            background-color: #e9ecef;
+            padding: 10px;
+            display: inline-block;
+            vertical-align: top;
+            position: sticky;
+            top: 0;
+        }
+
+        .resize-handle {
+            width: 7px;
+            height: 7px;
+            background: #fff;
+            border: 1px solid #000;
+            position: absolute;
+            z-index: 10;
+        }
+
+        .resize-handle.nw {
+            top: 0;
+            left: 0;
+            cursor: nw-resize;
+            transform: translate(-50%, -50%);
+        }
+
+        .resize-handle.ne {
+            top: 0;
+            right: 0;
+            cursor: ne-resize;
+            transform: translate(50%, -50%);
+        }
+
+        .resize-handle.sw {
+            bottom: 0;
+            left: 0;
+            cursor: sw-resize;
+            transform: translate(-50%, 50%);
+        }
+
+        .resize-handle.se {
+            bottom: 0;
+            right: 0;
+            cursor: se-resize;
+            transform: translate(50%, 50%);
+        }
+
+        .text-area {
+            background: transparent;
+            border: none;
+            color: white;
+            resize: both;
+            outline: none;
+            font-size: 16px;
+            word-wrap: break-word;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+    </style>
+</head>
+<body>
+
+
+<div class="modal fade " id="settingsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content  bg-dark text-white">
+            <div class="modal-header">
+                <h5 class="modal-title" id="settingsModalLabel">Настройки</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <span>Ссылка на Twitch</span>
+                <input class="form-control mt-1" id="twitchLink" value="{{ link }}">
+                <span>Секретный ключ</span>
+                <input class="form-control mt-1" id="key" style="-webkit-text-security: disc;" value="{{ key }}"
+                       disabled>
+                <button class="btn btn-primary mt-2" id="copyButton">Copy widget link<i class="fa-solid fa-copy"></i>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Сохранить изменения</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid bg-dark text-white">
+    <div class="row">
+        <div class="control-panel bg-dark" style="border-right: 2px solid #2D2D2DFF;">
+            <h5>Control Panel</h5>
+            <input type="text" id="media-url" class="form-control " placeholder="Enter media URL">
+            <button id="add-media" class="btn btn-primary mt-2">Add Media</button>
+            <button id="hide-media" class="btn btn-warning mt-2">Hide Media</button>
+            <button id="delete-media" class="btn btn-danger mt-2">Delete Media</button>
+            <button id="add-text" class="btn btn-primary mt-2">Add Text</button>
+
+            <button class="btn btn-primary mt-2 position-absolute" style="bottom: 10px; left: 10px;"
+                    data-bs-toggle="modal" data-bs-target="#settingsModal">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+            <div id="media-list" class="mt-3"></div>
+
+        </div>
+        <div class="media-container-wrapper">
+            <div class="media-container" id="media-container">
+                <iframe
+                        src="https://player.twitch.tv/?autoplay=true&channel={{ link.split('/')[-1] if link }}&enableExtensions=false&muted=true&parent={{ domain }}&player=popout&muted=true&quality=720p60"
+                        allow="autoplay"
+                        class="media-iframe">
+                </iframe>
+                <!-- Media files -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+<script src="/static/js/main.js?2"></script>
+</body>
+</html>
