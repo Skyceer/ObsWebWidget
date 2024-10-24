@@ -49,7 +49,7 @@
     $(document).ready(function () {
         $('#authButton').click(function () {
             const key = $('#keyInput').val();
-            if (key.length !== 32) {
+            if (key.length < 10) {
                 $('#keyInput').addClass('border border-danger border-2');
                 return;
             }
