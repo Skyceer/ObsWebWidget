@@ -31,7 +31,7 @@
 
 6. Запуск
    ```shell
-      gunicorn --worker-class eventlet -w 1 -b 127.0.0.1:5000 app:app
+    gunicorn --worker-class eventlet -w 1 -b 127.0.0.1:5000 app:app
    ```
 
 ## Использование
