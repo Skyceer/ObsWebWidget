@@ -76,7 +76,7 @@ $('#add-media').click(function () {
             video.src = url;
             video.addEventListener('loadedmetadata', function () {
                 const aspectRatio = video.videoWidth / video.videoHeight;
-                const initialWidthPx = 100; // Начальная ширина в пикселях
+                const initialWidthPx = 100;
                 const initialHeightPx = initialWidthPx / aspectRatio;
                 addMediaElement(mediaId, 'video', url, initialWidthPx, initialHeightPx);
             });
