@@ -1,3 +1,2 @@
-from socket import *  # noqa
-
-from routers import *
+from .routers import *
+from .socket import *  # noqa

@@ -9,7 +9,7 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 socketio = SocketIO(app)
 
-from routers import routers  # noqa
+from routers import *  # noqa
 
 if __name__ == '__main__':
     socketio.run(app)
