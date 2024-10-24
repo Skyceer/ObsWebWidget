@@ -1,1 +1,5 @@
 flask~=3.0.3
+flask-socketio
+flask-SQLAlchemy
+gunicorn
+eventlet
