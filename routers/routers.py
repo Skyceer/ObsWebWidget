@@ -38,13 +38,12 @@ def auth():
 
     if user:
         session['key'] = key
-        return jsonify({"status": "success"})
     else:
         new_user = User(key=key)
         db.session.add(new_user)
         db.session.commit()
         session['key'] = key
-        return jsonify({"status": "success"})
+    return jsonify({"status": "success"})
 
 
 @app.route('/display')
