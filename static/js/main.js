@@ -1,4 +1,6 @@
-const socket = io({});
+const socket = io({
+    transports: ['websocket']
+});
 const key = $('#key').val()
 
 socket.emit('join', {room: key});

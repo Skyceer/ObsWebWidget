@@ -7,7 +7,7 @@ from config import Config
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
-socketio = SocketIO(app)
+socketio = SocketIO(app, transports=["websocket"])
 
 from routers import *  # noqa
 
